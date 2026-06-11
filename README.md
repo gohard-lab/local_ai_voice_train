@@ -15,14 +15,16 @@
 
 이 저장소는 로컬 환경에서 RVC(인공지능 목소리 변환) 모델을 학습시킬 때, 비디오나 통파일 오디오를 GPU VRAM 과부하 없이 효율적으로 학습할 수 있도록 **가장 최적의 단위(3~5초)로 음성을 자동 절단하고 변환해 주는 파이썬 자동화 솔루션**을 제공합니다.
 
+
+### 전체 과정 설명 PDF : https://drive.google.com/file/d/1rvE2iszddyTVWIIE-zcC4luw0XVHBjA2/view?usp=drive_link
+
+### APPLIO 파일 다운로드 : https://drive.google.com/file/d/19glteM7504Exv-GHmLW5bPZzUBC1O_TE/view?usp=sharing
+
+
 ## ✨ 핵심 기능
 * **무음 기반 자동 슬라이싱:** `pydub` 라이브러리를 활용해 목소리가 잠시 쉬어가는 호흡 구간을 똑똑하게 감지하여 칼같이 잘라냅니다.
 * **VRAM 부족 및 OOM 에러 방지:** 조각 파일의 길이를 인공지능이 가장 좋아하는 최적의 규격으로 맞춰, RTX 2060 같은 보급형 그래픽카드에서도 학습 도중 튕기는 현상을 완벽히 방지합니다.
 * **현대적인 파이썬 표준 도입:** 구형 `requirements.txt` 대신, 요즘 파이썬 생태계의 표준인 `pyproject.toml`과 초고속 매니저 `uv`를 활용해 의존성을 세련되게 제어합니다.
-
-
-전체 과정 설명 PDF : https://drive.google.com/file/d/1rvE2iszddyTVWIIE-zcC4luw0XVHBjA2/view?usp=drive_link
-APPLIO 파일 다운로드 : https://drive.google.com/file/d/19glteM7504Exv-GHmLW5bPZzUBC1O_TE/view?usp=sharing
 
 ---
 
