@@ -6,6 +6,10 @@
   <img src="https://img.shields.io/badge/라이선스-MIT-green?style=for-the-badge" alt="MIT 라이선스">
 </div>
 
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gohard-lab/local_ai_voice_train/blob/main/colab_runner.ipynb)
+▲ 로컬 파이썬 세팅이 귀찮으신 분들은 위 배지를 클릭하시면 구글 코랩 무료 GPU 서버에서 즉시 전처리를 테스트해 보실 수 있습니다! (안심하고 실행하셔도 됩니다.)
+
 ---
 
 이 저장소는 로컬 환경에서 RVC(인공지능 목소리 변환) 모델을 학습시킬 때, 비디오나 통파일 오디오를 GPU VRAM 과부하 없이 효율적으로 학습할 수 있도록 **가장 최적의 단위(3~5초)로 음성을 자동 절단하고 변환해 주는 파이썬 자동화 솔루션**을 제공합니다.
