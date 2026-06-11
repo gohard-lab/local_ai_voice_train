@@ -8,7 +8,7 @@
 
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gohard-lab/local_ai_voice_train/blob/main/colab_runner.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gohard-lab/local_ai_voice_train/blob/main/local_ai_voice_train.ipynb)
 ▲ 로컬 파이썬 세팅이 귀찮으신 분들은 위 배지를 클릭하시면 구글 코랩 무료 GPU 서버에서 즉시 전처리를 테스트해 보실 수 있습니다! (안심하고 실행하셔도 됩니다.)
 
 ---
