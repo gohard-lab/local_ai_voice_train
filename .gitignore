@@ -6,6 +6,7 @@ dist/
 wheels/
 *.egg-info
 CAPCUT/
+dataset/
 
 # Virtual environments
 .venv
