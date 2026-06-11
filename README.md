@@ -103,6 +103,8 @@ if __name__ == "__main__":
 ### 📢 채널 안내 및 커뮤니티
 유튜브 채널: 잡학다식 개발자 PolymathDev_KR - 본 파이프라인의 구축 전 과정과 요리 프로그램 컨셉의 실전 구동 영상을 확인해 보세요!
 
+[유튜브 영상](https://youtu.be/mthR8T4Lkcw)
+
 버그 제보 및 문의: 코드 개선안이나 인퍼런스 에러 관련 제보는 언제든 Issue나 Pull Request를 남겨주시면 솔직 담백하게 답변해 드리겠습니다.
 
 E-mail : cheiri@nate.com
