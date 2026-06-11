@@ -39,34 +39,55 @@ uv sync
 참고: pydub은 음향 파형을 정밀 디코딩하기 위해 시스템에 FFmpeg 코덱 설치가 필요합니다. 환경 변수 등록을 확인해 주세요.
 
 ```python
+# local_ai_voice_trainer.py
 import os
 from pydub import AudioSegment
-from pydub.silence import split_on_silence
+from tracker_web import log_app_usage
 
-def slice_audio_for_rvc(source_path, output_dir):
-    # 클립챔프 등에서 뽑아낸 무손실 원본 WAV 오디오 파일 로드
-    audio = AudioSegment.from_file(source_path, format="wav")
+def slice_audio_source(file_path: str, output_dir: str, chunk_length_ms: int = 5000):
+    """
+    Split a long audio file into small chunks (e.g., 5 seconds) for RVC training.
+    """
+    print(f"[INFO] Accessing source file: {file_path}")
     
-    # 0.5초(500ms) 이상 소리가 나지 않고 -40dB 이하인 무음 구간을 절단선으로 지정
-    chunks = split_on_silence(
-        audio,
-        min_silence_len=500,    # 분할을 결정할 최소 무음 길이
-        silence_thresh=-40      # 무음으로 판단할 데시벨 기준치
+    # Track button click or function execution with JSON details
+    log_app_usage(
+        "local_ai_voice_trainer", 
+        "audio_slicing_started", 
+        {"source_file": file_path, "chunk_size_ms": chunk_length_ms}
     )
-    
+
+    if not os.path.exists(file_path):
+        print("[ERROR] Source audio file not found.")
+        return False
+
     os.makedirs(output_dir, exist_ok=True)
     
-    # 5초 내외로 쪼개진 깨끗한 목소리 슬라이스 조각들을 순차적으로 저장
-    for i, chunk in enumerate(chunks):
-        chunk.export(f"{output_dir}/slice_{i:03d}.wav", format="wav")
-        
-    print(f"[성공] 총 {len(chunks)}개의 데이터셋 오디오 조각이 '{output_dir}' 방에 생성되었습니다.")
+    # Load and slice the audio using pydub
+    audio = AudioSegment.from_file(file_path)
+    chunks = [audio[i:i + chunk_length_ms] for i in range(0, len(audio), chunk_length_ms)]
+
+    for idx, chunk in enumerate(chunks):
+        chunk_output_path = os.path.join(output_dir, f"slice_{idx:03d}.wav")
+        # Export as WAV format which is preferred by Applio/RVC
+        chunk.export(chunk_output_path, format="wav")
+
+    print(f"[SUCCESS] Generated {len(chunks)} audio slices in: {output_dir}")
+    
+    # Track successful completion
+    log_app_usage(
+        "local_ai_voice_trainer", 
+        "audio_slicing_completed", 
+        {"total_slices": len(chunks)}
+    )
+    return True
 
 if __name__ == "__main__":
-    # 로컬 AI 목소리 학습을 위한 표준 경로 설정
-    SOURCE = "assets/audios/raw_source.wav"
-    TARGET_DIR = "dataset/voice_slices"
-    slice_audio_for_rvc(SOURCE, TARGET_DIR)
+    # Define default path settings matching the project structure
+    SRC_FILE = "dataset/raw_source/The_Residence.m4a"
+    OUT_DIR = "dataset/clipchamp_slices"
+    
+    slice_audio_source(SRC_FILE, OUT_DIR)
 ```
 
 ### 📊 인공지능 학습의 현실 (교과서 이론 vs 실제 현업)
@@ -78,6 +99,8 @@ if __name__ == "__main__":
 유튜브 채널: 잡학다식 개발자 PolymathDev_KR - 본 파이프라인의 구축 전 과정과 요리 프로그램 컨셉의 실전 구동 영상을 확인해 보세요!
 
 버그 제보 및 문의: 코드 개선안이나 인퍼런스 에러 관련 제보는 언제든 Issue나 Pull Request를 남겨주시면 솔직 담백하게 답변해 드리겠습니다.
+
+E-mail : cheiri@nate.com
 
 ### ⭐ 잊지 말고 Star를 눌러주세요!
 이 코드가 대표님의 독점 AI 성우를 구워내는 데 도움을 드렸다면 우측 상단의 Star(⭐) 버튼을 눌러서 마음을 표현해 주세요. 여러분의 작은 성의 하나가 더 유익하고 지적인 파이썬 콘텐츠를 지속해서 만들어 나가는 가장 큰 원동력이 됩니다! 감사합니다.
