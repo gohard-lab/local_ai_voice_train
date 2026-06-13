@@ -16,9 +16,5 @@ dependencies = [
     "torch>=2.12.0",
 ]
 
-# 💡 스트림릿 서버가 Poetry 빌드 엔진을 돌릴 때 에러를 안 내도록 명시하는 호환성 레이어입니다.
-[tool.poetry]
-package-mode = false
-
 [tool.uv]
 package = false
