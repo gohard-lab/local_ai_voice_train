@@ -1,7 +1,10 @@
 [project]
 name = "local-ai-voice-train"
 version = "0.1.0"
-description = "Add your description here"
+description = "Local AI Voice Trainer Pipeline"
+authors = [
+    { name = "gohard-lab" }
+]
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -12,3 +15,6 @@ dependencies = [
     "supabase>=2.31.0",
     "torch>=2.12.0",
 ]
+
+[tool.uv]
+package = false # 💡 PEP 621 방식(uv)에서 '패키지 빌드 안 함'을 선언하는 최신 표준 명령어
