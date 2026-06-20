@@ -1,7 +1,7 @@
 # local_ai_voice_trainer.py
 import os
 from pydub import AudioSegment
-from tracker_web import log_app_usage
+from tracker_hub import log_app_usage
 
 def slice_audio_source(file_path: str, output_dir: str, chunk_length_ms: int = 5000):
     """
